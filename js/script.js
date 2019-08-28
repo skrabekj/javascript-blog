@@ -10,7 +10,8 @@ function titleClickHandler(event){
   for(let activeLink of activeLinks){
     activeLink.classList.remove('active');
   }
-  /* [In Progress] add class 'active' to the clicked link */
+  /* [Done] add class 'active' to the clicked link */
+  event.preventDefault();
   const clickedElement = this;
   console.log('clickedElement:', clickedElement);
   clickedElement.classList.add('active');
