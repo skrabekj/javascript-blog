@@ -61,13 +61,17 @@ function generateTitleLinks(){
       console.log(articleId);
     /* find the title element */
       const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+      console.log(articleTitle)
     /* get the title from the title element */
       const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
       console.log(linkHTML)
     /* create HTML of the link */
-
+      titleList.insertAdjacentHTML('  beforeend', linkHTML);
     /* insert link into titleList */
+      html = html + linkHTML;
   }
+  titleList.innerHTML = html;
+  console.log(html);
 }
 
 generateTitleLinks();
