@@ -55,19 +55,19 @@ function generateTitleLinks(){
   /* for each article */
   const articles = document.querySelectorAll('.post');
   for(let article of articles){
-    titleList.innerHTML = '';
-  }
 
     /* get the article id */
-
+      const articleId = clickedElement.getAttribute('id');
+      console.log(articleId);
     /* find the title element */
-
+      const articleTitle = article.querySelector(optTitleSelector).innerHTML;
     /* get the title from the title element */
-
+      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      console.log(linkHTML)
     /* create HTML of the link */
 
     /* insert link into titleList */
-
+  }
 }
 
 generateTitleLinks();
