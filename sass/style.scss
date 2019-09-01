@@ -1,11 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap&subset=latin-ext');
 
 /* Variables */
 
 $color-light: #fff;
 $color-dark: #444;
 
-$font-logo: 'Sacramento', cursive;
+$font-logo: 'Anton', sans-serif;
 $font-header: 'Oswald', sans-serif;
 $font-text: 'Source Sans Pro', sans-serif;
 
@@ -16,11 +17,11 @@ $font-text: 'Source Sans Pro', sans-serif;
 }
 
 body {
-  background: $color-light;
+  background-image: url( '../images/splash.jpg');
   font-family: $font-text;
   color: $color-dark;
-  font-weight: 300;
-  font-size: 16px;
+  font-weight: 400;
+  font-size: 20px;
   line-height: 1.7;
 }
 
@@ -52,10 +53,6 @@ body {
   flex: 1 0 0;
 }
 
-.posts {
-  flex: 2 0 0;
-}
-
 .sidebar, .posts {
   background: $color-light;
   margin-right: 10px;
@@ -63,7 +60,17 @@ body {
   border: 1px solid $color-dark;
   border-radius: 5px;
 }
-
+.sidebar {
+  text-align: center;
+  background: rgba(217, 217, 217, 0.8);
+  color: black;
+}
+.posts {
+  flex: 2 0 0;
+  text-align: justify;
+  background: rgba(217, 217, 217, 0.8);
+  color: black;
+}
 /* Logo */
 
 .logo {
@@ -72,6 +79,7 @@ body {
   font-size: 104px;
   line-height: 1;
   text-align: center;
+  color: #fff;
 }
 
 /* Lists */
@@ -117,4 +125,9 @@ body {
   p {
     margin: 0 10px 0 0;
   }
+}
+
+a {
+  color: black;
+  text-decoration: none;
 }
