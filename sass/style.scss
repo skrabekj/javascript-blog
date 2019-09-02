@@ -1,6 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald:400,600|Sacramento|Source+Sans+Pro:300&subset=latin-ext');
 @import url('https://fonts.googleapis.com/css?family=Anton&display=swap&subset=latin-ext');
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
 
+  to {
+    opacity: 1;
+  }
+}
 /* Variables */
 
 $color-light: #fff;
@@ -70,20 +78,35 @@ body {
   text-align: justify;
   background: rgba(217, 217, 217, 0.8);
   color: black;
+  position: relative;
 }
 /* Logo */
 
 .logo {
+  position: relative;
   font-family: $font-logo;
   font-weight: 400;
   font-size: 104px;
   line-height: 1;
   text-align: center;
   color: #fff;
-  letter-spacing: 0.2em;
   text-transform: uppercase;
+  border-bottom: #fff solid 5px;
+  margin-left: 25%;
+  margin-right: 25%;
+  margin-bottom: 80px;
+  padding-bottom: 15px;
 }
-
+.logo::after {
+  position: absolute;
+   content: '';
+   bottom: -25px;
+   left: 50%;
+   width: 180px;
+   height: 10px;
+   transform: translateX(-50%);
+   background: #fff;
+}
 /* Lists */
 
 .list {
@@ -115,6 +138,8 @@ body {
   display: none;
   &.active {
     display: block;
+    animation-name: fadeIn;
+    animation-duration: 2s;
   }
 }
 
