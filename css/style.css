@@ -75,6 +75,8 @@ body {
   line-height: 1;
   text-align: center;
   color: #fff;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 /* Lists */
