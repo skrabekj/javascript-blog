@@ -82,6 +82,7 @@ generateTitleLinks();
 
 function generateTags(){
   /* find all articles */
+
   const articles = document.querySelectorAll('.post');
 
   let html = '';
@@ -106,11 +107,11 @@ function generateTags(){
       /* add generated code to html variable */
       tagList.insertAdjacentHTML('beforeEnd', taglinkHTML);
       html = html + taglinkHTML;
-    }
     /* END LOOP: for each tag */
-
+      }
     /* insert HTML of all the links into the tags wrapper */
-
+    const steveList = document.querySelector('.tags');
+    steveList.insertAdjacentHTML('beforeEnd', html);
   /* END LOOP: for every article: */
   }
 }
