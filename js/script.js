@@ -146,6 +146,9 @@ function tagClickHandler(event){
   /* END LOOP: for each found tag link */
   }
   /* execute function "generateTitleLinks" with article selector as argument */
+  function generateTitleLinks(customSelector = ''){
+    const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  }
 }
 
 function addClickListenersToTags(){
