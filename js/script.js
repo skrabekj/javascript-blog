@@ -106,13 +106,11 @@ function generateTags(){
       console.log(taglinkHTML)
       /* add generated code to html variable */
       tagList.insertAdjacentHTML('beforeEnd', taglinkHTML);
-      html = html + taglinkHTML;
+      //html = html + taglinkHTML;
     /* END LOOP: for each tag */
-      }
+    }
     /* insert HTML of all the links into the tags wrapper */
-    /*const steveList = document.querySelector('.tags');
-    steveList.insertAdjacentHTML('beforeEnd', html);
-    //usuń to gunwo potem
+    html = html + taglinkHTML;
   /* END LOOP: for every article: */
   }
 }
@@ -125,10 +123,10 @@ function tagClickHandler(event){
   const clickedElement = this;
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
-  console.log(href)
+  console.log('href:' + href)
   /* make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#tag-', '');
-  console.log(tag)
+  console.log('to jest: ' + tag)
   /* find all tag links with class active */
   const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   console.log(activeTagLinks)
@@ -142,7 +140,7 @@ function tagClickHandler(event){
   const tagLink = document.querySelectorAll('a[href="' + href + '"]');
   console.log(tagLink)
   /* START LOOP: for each found tag link */
-  for(let tagLink of tagLinks){
+  for(let tagLink of tagTagLinks){
     /* add class active */
     tagLink.classList.add('active');
   /* END LOOP: for each found tag link */
