@@ -106,11 +106,12 @@ function generateTags(){
       console.log(taglinkHTML)
       /* add generated code to html variable */
       tagList.insertAdjacentHTML('beforeEnd', taglinkHTML);
-      //html = html + taglinkHTML;
+      html = html + taglinkHTML;
     /* END LOOP: for each tag */
     }
     /* insert HTML of all the links into the tags wrapper */
-    html = html + taglinkHTML;
+    tagList.innerHTML = html;
+    console.log(html);
   /* END LOOP: for every article: */
   }
 }
@@ -140,25 +141,27 @@ function tagClickHandler(event){
   const tagLink = document.querySelectorAll('a[href="' + href + '"]');
   console.log(tagLink)
   /* START LOOP: for each found tag link */
-  for(let tagLink of tagTagLinks){
+  for(let tagLink of tagLinks){
     /* add class active */
     tagLink.classList.add('active');
   /* END LOOP: for each found tag link */
   }
   /* execute function "generateTitleLinks" with article selector as argument */
-  function generateTitleLinks(customSelector = ''){
-    const articles = document.querySelectorAll(optArticleSelector + customSelector);
+  function generateTitleLinks( articles = document.querySelectorAll(optArticleSelector + customSelector)){
   }
 }
 
-function addClickListenersToTags(){
+function addClickListenersToTags(event){
+  console.log('Link was clicked!');
+  console.log(event);
   /* find all links to tags */
-
+  const tagLinks = document.querySelectorAll('.list-horizontal a');
   /* START LOOP: for each link */
-
+  for(let tagLink of tagLinks){
     /* add tagClickHandler as event listener for that link */
-
+    tagLink.addEventListener('click', addClickListenersToTags);
   /* END LOOP: for each link */
+  }
 }
 
 addClickListenersToTags();
