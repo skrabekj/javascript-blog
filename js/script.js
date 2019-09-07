@@ -40,7 +40,8 @@ function titleClickHandler(event){
 const optArticleSelector = '.post',
   optTitleSelector = '.post-title',
   optTitleListSelector = '.titles',
-  optArticleTagsSelector = '.post-tags .list';
+  optArticleTagsSelector = '.post-tags .list',
+  optArticleAuthorSelector = '.post-author';
 
 function generateTitleLinks(){
 
@@ -90,7 +91,7 @@ function generateTags(){
   for(let article of articles){
     /* find tags wrapper */
     const tagList = article.querySelector(optArticleTagsSelector);
-    console.log('wrapeper, ', tagList);
+    console.log('wraper, ', tagList);
     /* make html variable with empty string */
     let html = '';
     /* get tags from data-tags attribute */
@@ -117,6 +118,7 @@ function generateTags(){
 }
 
 generateTags();
+
 function tagClickHandler(event){
   /* prevent default action for this event */
   event.preventDefault();
@@ -124,10 +126,10 @@ function tagClickHandler(event){
   const clickedElement = this;
   /* make a new constant "href" and read the attribute "href" of the clicked element */
   const href = clickedElement.getAttribute('href');
-  console.log('href:' + href)
+  console.log('href:',  href)
   /* make a new constant "tag" and extract tag from the "href" constant */
   const tag = href.replace('#tag-', '');
-  console.log('to jest: ' + tag)
+  console.log('to jest: ', tag)
   /* find all tag links with class active */
   const activeTagLinks = document.querySelectorAll('a.active[href^="#tag-"]');
   console.log(activeTagLinks)
@@ -147,13 +149,13 @@ function tagClickHandler(event){
   /* END LOOP: for each found tag link */
   }
   /* execute function "generateTitleLinks" with article selector as argument */
-  function generateTitleLinks( articles = document.querySelectorAll(optArticleSelector + customSelector)){
+  function generateTitleLinks(articles = document.querySelectorAll(optArticleSelector + customSelector)){
   }
 }
 
-function addClickListenersToTags(event){
+function addClickListenersToTags(){
   console.log('Link was clicked!');
-  console.log(event);
+  //console.log(event);
   /* find all links to tags */
   const tagLinks = document.querySelectorAll('.list-horizontal a');
   /* START LOOP: for each link */
@@ -165,3 +167,52 @@ function addClickListenersToTags(event){
 }
 
 addClickListenersToTags();
+
+function generateAuthors(){
+  const articles = document.querySelectorAll('.post');
+  let html = '';
+  for(let article of articles){
+    const authorList = article.querySelector(optArticleAuthorSelector);
+    console.log('wraper, ', authorList);
+    let html = '';
+    const articleAuthor = article.getAttribute('data-author');
+    console.log(articleAuthor);
+    const authorlinkHTML = '<a href="#' + articleAuthor + '"><span>' + 'by  ' + articleAuthor + '</span></a>';
+    console.log('author' + authorlinkHTML)
+    authorList.insertAdjacentHTML('beforeEnd', authorlinkHTML);
+    html = html + authorlinkHTML;
+    authorList.innerHTML = html;
+    console.log(html);
+  }
+}
+generateAuthors();
+
+function authorClickHandler(event){
+  event.preventDefault();
+  const clickedElement = this;
+  const href = clickedElement.getAttribute('href');
+  console.log('href:', href)
+  const author = href.replace('#author-', '');
+  console.log('to jest: ', author)
+  const activeAuthorLinks = document.querySelectorAll('a.active[href^="#author-"]');
+  console.log(activeAuthorLinks)
+  for(let activeAuthorLink of activeAuthorLinks){
+    activeAuthorLink.classList.remove('active');
+  }
+  const authorLinks = document.querySelectorAll('a[href="' + href + '"]');
+  console.log(authorLinks)
+  for(let authorLink of authorLinks){
+    authorLink.classList.add('active');
+  }
+  function generateTitleLinks(articles = document.querySelectorAll(optArticleSelector + customSelector)){
+  }
+}
+
+function addClickListenersToAuthors(){
+  console.log('Link was clicked!');
+  const authorLinks = document.querySelectorAll('.post-author a');
+  for(let authorLink of authorLinks){
+    authorLink.addEventListener('click', authorClickHandler);
+  }
+}
+addClickListenersToAuthors();
