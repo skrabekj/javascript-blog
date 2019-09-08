@@ -149,8 +149,8 @@ function tagClickHandler(event){
   /* END LOOP: for each found tag link */
   }
   /* execute function "generateTitleLinks" with article selector as argument */
-  function generateTitleLinks(articles = document.querySelectorAll(optArticleSelector + customSelector)){
-  }
+  generateTitleLinks('[data-tags~="' + tag + '"]');
+
 }
 
 function addClickListenersToTags(){
@@ -204,8 +204,8 @@ function authorClickHandler(event){
   for(let authorLink of authorLinks){
     authorLink.classList.add('active');
   }
-  function generateTitleLinks(articles = document.querySelectorAll(optArticleSelector + customSelector)){
-  }
+  generateTitleLinks('[data-author~="' + author + '"]');
+  console.log()
 }
 
 function addClickListenersToAuthors(){
