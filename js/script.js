@@ -42,7 +42,9 @@ const optArticleSelector = '.post',
   optTitleListSelector = '.titles',
   optArticleTagsSelector = '.post-tags .list',
   optArticleAuthorSelector = '.post-author',
-  optTagsListSelector = '.tags.list'
+  optTagsListSelector = '.tags.list',
+  optCloudClassCount = '5',
+  optCloudClassPrefix = 'tag-size-'
 
 function generateTitleLinks(customSelector = ''){
 
@@ -81,6 +83,27 @@ function generateTitleLinks(customSelector = ''){
 }
 
 generateTitleLinks();
+
+function calculateTagsParams(tags){
+    const params = {min:0, max:99999};
+    for(let tag in tags){
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      if(tags[tag] > params.max){
+        params.max = tags[tag];
+      }
+      if(tags[tag] < params.min){
+        params.min = tags[tag];
+      }
+    }
+    return params;
+}
+
+function calculateTagClass(count, params){
+    const normalizedCount = count - params.min;
+    const normalizedMax = params.max - params.min;
+    const percentage = normalizedCount / normalizedMax;
+    const classNumber = Math.floor( percentage * (optCloudClassCount - 1) + 1 );
+}
 
 function generateTags(){
   /* [NEW] create a new variable allTags with an empty object */
@@ -129,11 +152,15 @@ function generateTags(){
   /* [NEW] add html from allTags to tagList */
   //tagList.innerHTML = allTags.join(' ');
   /* [New] create variable for all links html code */
+  const tagsParams = calculateTagsParams(allTags);
+  console.log('tagsParams: ', tagsParams)
   let allTagsHTML = '';
   /* [New] start loop for each tag in allTags */
   for(let tag in allTags){
     /* [New] generate code of a link and add it to allTagsHTML */
-    allTagsHTML += '<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>" + ' (' + allTags[tag] + ')' ;
+    const tagLinkHTML = '<li>' + calculateTagClass(allTags[tag], tagsParams) + '</li>';
+    console.log('tagLinkHTML:', tagLinkHTML)
+    allTagsHTML += tagLinkHTML; //'<li><a href="#tag-' + tag + '"><span>' + tag + "</span></a></li>" + ' (' + allTags[tag] + ')' //class = "calculateTagClass";
   }
   /* [New] add html from allTagsHTML to tagList */
   tagList.innerHTML = allTagsHTML;
